@@ -7,18 +7,22 @@ class MY_Controller extends CI_Controller{
             
         }
         function layout(){
-            
+            //all layout here
         }
         
         function menue(){
-            
+            //menue item
         }
         
 	function header(){
-            
+            //header here
         }
         function footer(){
-            
+            //footer here
+        }
+        
+        public function __destruct() {
+            parent::__destruct();
         }
             
         
