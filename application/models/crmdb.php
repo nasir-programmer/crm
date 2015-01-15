@@ -21,8 +21,19 @@ function check_today_event(){
    
 }
 
-function get_mail_list(){
-    $q=$this->db->query('SELECT * FROM `client_list`');
+function get_mail_list($date){
+    $qr="SELECT * FROM `client_list` WHERE `active` = 1 and `last_mail` != $date";
+    $q=$this->db->query($qr);
+    if($q->num_rows()>0){
+        $list=array();
+        foreach($q->result() as $row){
+            $list[]=$row;
+        }
+        return $list;
+    }
+    else{
+        return false;
+    }
    
 }
 
