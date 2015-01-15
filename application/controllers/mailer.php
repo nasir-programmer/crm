@@ -12,15 +12,21 @@ class mailer extends CI_Controller{
         }
         
         private function email($email){
-            $this->email->from('your@example.com', 'Your Name');
-            $this->email->to($email->email);
-            $this->email->subject('Email Test');
-            $this->email->message('Testing the email class.'); 
-            if($this->email->send()){
-                return true;
-            }
+            if(filter_var($email->email, FILTER_VALIDATE_EMAIL)){
+                $this->email->from('your@example.com', 'Your Name');
+                $this->email->to($email->email);
+                $this->email->subject('Email Test');
+                $this->email->message('Testing the email class.'); 
+                if($this->email->send()){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+                }
             else{
-                return false;
+                   // echo "not valid mail";
+                    return false;
             }
         }
         
@@ -38,8 +44,14 @@ class mailer extends CI_Controller{
                             foreach($rl as $v){
                                if($this->email($v)){
                                    if($this->update_date($v->email)){
+                                       // your coding
+                                       //   ......
+                                       //    here
                                        
                                    }                                   
+                               }
+                               else{
+                                  // break;
                                }
                             }
                         }
